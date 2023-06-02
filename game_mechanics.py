@@ -166,21 +166,6 @@ def set_points_to_win():
     global points_to_win
     while True:
         try:
-            points_to_win = int(input(f"Set the number of points a player needs to win (min: 1): "))
-            if points_to_win < 1:
-                raise ValueError
-            break
-        except:
-            print("Invalid input. Try again.")
-    print()
-    print('-' * 26)
-    print()
-
-
-def set_points_to_win():
-    global points_to_win
-    while True:
-        try:
             points_to_win = int(input(f"Set min number of points to win (min: 1): "))
             if points_to_win < 1:
                 raise ValueError
