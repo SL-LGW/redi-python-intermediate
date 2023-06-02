@@ -164,15 +164,33 @@ def welcome():
 
 
 def card_setup():
-    global black_cards, white_cards, response
-    params_black = {"packs": "CAH: Family Edition (Free Print & Play Public Beta)", "color": "black"}
-    params_white = {"packs": "CAH: Family Edition (Free Print & Play Public Beta)", "color": "white"}
-    # params_black = {"packs": "CAH Base Set", "color": "black"} # for testing
-    # params_white = {"packs": "CAH Base Set", "color": "white"} # for testing
+    global black_cards, white_cards, response, pack_selection
+    print("Warning: This game is generally considered to be offensive. We mean no offense.")
+    print("         If you'd like to minimize any offensiveness, we recommend choosing the Family Edition.")
+    print()
+    print('-' * 26)
+    print()
+    while True:
+        try:
+            pack_selection = int(input("Play with the Family Edition (1) or the full selection (2)? Enter number: "))
+            if pack_selection == 1:
+                params_black = {"packs": "CAH: Family Edition (Free Print & Play Public Beta)", "color": "black"}
+                params_white = {"packs": "CAH: Family Edition (Free Print & Play Public Beta)", "color": "white"}
+            elif pack_selection == 2:
+                params_black = {"color": "black"}
+                params_white = {"color": "white"}
+            else:
+                raise ValueError
+            break
+        except:
+            print("Invalid input. Try again.")
     response = requests.get("https://restagainsthumanity.com/api/v2/cards", params=params_black)
     black_cards = response.json()["black"]
     response = requests.get("https://restagainsthumanity.com/api/v2/cards", params=params_white)
     white_cards = response.json()["white"]
+    print()
+    print('-' * 26)
+    print()
 
 
 def set_points_to_win():
@@ -208,11 +226,13 @@ def player_setup():
     while player_name_countdown > 0:
         while True:
             a = input("Enter player name: ")
-            if not a or any(person.player == a for person in player_list):
+            if not a or any(person.player == a for person in player_list) or a.isspace() is True:
                 if not a:
                     print("Blank input. Try again.")
-                if any(person.player == a for person in player_list):
+                elif any(person.player == a for person in player_list):
                     print("Already exists. Try a different name.")
+                elif a.isspace() is True:
+                    print("Cannot be only spaces. Try again.")
             else:
                 break
         a = Player(a)
