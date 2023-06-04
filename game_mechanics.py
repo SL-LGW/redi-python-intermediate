@@ -120,6 +120,7 @@ class Czar(Player):
         print('-' * 26)
         print()
         print(f"Current black card: {current_black_card_text}")
+        random.shuffle(white_card_submission)
         submission_count = 0
         for submission in white_card_submission:
             if current_black_card["pick"] == 1:
