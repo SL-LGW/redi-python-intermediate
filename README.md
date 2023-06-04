@@ -8,7 +8,9 @@ In this project, there is usage of the following:
 - Requests, Modules
 - Error Handling
 
-To play this game, it is best to run the game.py file from a command line. At the beginning of the game, there is an option to play with only the Family Edition (kid-friendly version). You must have at least 4 players to play. At each player's turn, their hand is not revealed until the player presses the Enter key; this is the opportunity for others to step away from the screen to give the player their privacy when they choose which card to submit.
+To play this game, it is best to run the game.py file from a command line in WINDOWS, since it makes use of screen clearing from the operating system.
+
+At the beginning of the game, there is an option to play with only the Family Edition (kid-friendly version). You must have at least 4 players to play. At each player's turn, their hand is not revealed until the player presses the Enter key; this is the opportunity for others to step away from the screen to give the player their privacy when they choose which card to submit.
 
 Have fun!
 - SL
