@@ -157,7 +157,18 @@ def welcome():
     print()
     print('-' * 26)
     print()
-    print("Welcome to Python against Humanity, a ReDI project.")
+    print("Welcome to Python Against Humanity, a ReDI project.")
+    print("Based on Cards Against Humanity, a party game for horrible people.")
+    print()
+    print('-' * 26)
+    print()
+    print("Disclaimer: Cards Against Humanity allows the open use of their cards, as long as you don't make money off of it.")
+    print("            For more information, visit their website at https://www.cardsagainsthumanity.com/#downloads")
+    print()
+    print('-' * 26)
+    print()
+    print("Warning: This game is generally considered to be offensive. We mean no offense.")
+    print("         If you'd like to minimize any offensiveness, we recommend choosing the Family Edition.")
     print()
     print('-' * 26)
     print()
@@ -165,11 +176,6 @@ def welcome():
 
 def card_setup():
     global black_cards, white_cards, response, pack_selection
-    print("Warning: This game is generally considered to be offensive. We mean no offense.")
-    print("         If you'd like to minimize any offensiveness, we recommend choosing the Family Edition.")
-    print()
-    print('-' * 26)
-    print()
     while True:
         try:
             pack_selection = int(input("Play with the Family Edition (1) or the full selection (2)? Enter number: "))
@@ -232,7 +238,7 @@ def player_setup():
                 elif any(person.player == a for person in player_list):
                     print("Already exists. Try a different name.")
                 elif a.isspace() is True:
-                    print("Cannot be only spaces. Try again.")
+                    print("Cannot have only spaces. Try again.")
             else:
                 break
         a = Player(a)
