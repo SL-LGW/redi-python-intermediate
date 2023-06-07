@@ -69,11 +69,11 @@ class Player:
             while True:
                 try:
                     submit_index_2 = int(input(text))
-                    while submit_index_2 >= 10 or submit_index_2 < 0:
+                    while 0 > submit_index_2 >= 10 or submit_index == submit_index_2:
                         raise IndexError
                     break
                 except:
-                    print("Invalid input. Try again.")
+                    print("Invalid input OR already used. Try again.")
             print_break()
             print(f"Your second submission: {self.hand[submit_index_2]}")
             my_submission = []
@@ -146,6 +146,7 @@ def print_break():
     print()
     print('-' * 26)
     print()
+
 
 def welcome():
     print_break()
