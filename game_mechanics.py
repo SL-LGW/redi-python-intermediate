@@ -38,45 +38,43 @@ class Player:
             count += 1
         if current_black_card["pick"] == 1:
             # print(current_black_card) # for testing
+            text = "Please choose a card to submit (enter number): "
             while True:
                 try:
-                    submit_index = int(input("Please choose a card to submit (enter number): "))
+                    submit_index = int(input(text))
                     while submit_index >= 10 or submit_index < 0:
                         raise IndexError
                     break
                 except:
                     print("Invalid input. Try again.")
-            print()
-            print('-' * 26)
-            print()
+            print_break()
             print(f"Your submission: {self.hand[submit_index]}")
             white_card_submission.append((self.player, self.hand[submit_index]))
             self.hand.remove(self.hand[submit_index])
         elif current_black_card["pick"] == 2:
             # print(current_black_card) # for testing
+            text = "Please choose the first card (enter number): "
             while True:
                 try:
-                    submit_index = int(input("Please choose the first card (enter number): "))
+                    submit_index = int(input(text))
                     while submit_index >= 10 or submit_index < 0:
                         raise IndexError
                     break
                 except:
                     print("Invalid input. Try again.")
-            print()
-            print('-' * 26)
-            print()
+            print_break()
             print(f"Your first submission: {self.hand[submit_index]}")
+            print_break()
+            text = "Please choose the second card (enter number): "
             while True:
                 try:
-                    submit_index_2 = int(input("Please choose the second card (enter number): "))
+                    submit_index_2 = int(input(text))
                     while submit_index_2 >= 10 or submit_index_2 < 0:
                         raise IndexError
                     break
                 except:
                     print("Invalid input. Try again.")
-            print()
-            print('-' * 26)
-            print()
+            print_break()
             print(f"Your second submission: {self.hand[submit_index_2]}")
             my_submission = []
             my_submission.append(self.hand[submit_index])
@@ -88,9 +86,7 @@ class Player:
             elif submit_index_2 > submit_index:
                 self.hand.remove(self.hand[submit_index_2])
                 self.hand.remove(self.hand[submit_index])
-        print()
-        print('-' * 26)
-        print()
+        print_break()
 
     def add_point(self):
         points_to_add = current_black_card["pick"]
@@ -109,16 +105,12 @@ class Czar(Player):
         black_cards.remove(current_black_card)
         current_black_card_text = current_black_card["text"]
         print(f"Current black card: {current_black_card_text}")
-        print()
-        print('-' * 26)
-        print()
+        print_break()
 
     def display_card_candidates(self):
         global submission_count
         input(f"{player_list[current_czar_index].player}, time to pick the round winner. Press Enter to see cards.")
-        print()
-        print('-' * 26)
-        print()
+        print_break()
         print(f"Current black card: {current_black_card_text}")
         random.shuffle(white_card_submission)
         submission_count = 0
@@ -139,13 +131,9 @@ class Czar(Player):
                 break
             except:
                 print("Invalid input. Try again.")
-        print()
-        print('-' * 26)
-        print()
+        print_break()
         print(f"Round winner: {white_card_submission[winning_index]}")
-        print()
-        print('-' * 26)
-        print()
+        print_break()
         print("Current points:")
         for person in player_list:
             if person.player == white_card_submission[winning_index][0]:
@@ -154,25 +142,22 @@ class Czar(Player):
         white_card_submission = []
 
 
-def welcome():
+def print_break():
     print()
     print('-' * 26)
     print()
+
+def welcome():
+    print_break()
     print("Welcome to Python Against Humanity, a ReDI project.")
     print("Based on Cards Against Humanity, a party game for horrible people.")
-    print()
-    print('-' * 26)
-    print()
+    print_break()
     print("Disclaimer: Cards Against Humanity allows the open use of their cards, as long as you don't make money off of it.")
     print("            For more information, visit their website at https://www.cardsagainsthumanity.com/#downloads")
-    print()
-    print('-' * 26)
-    print()
+    print_break()
     print("Warning: This game is generally considered to be offensive. We mean no offense.")
     print("         If you'd like to minimize any offensiveness, we recommend choosing the Family Edition.")
-    print()
-    print('-' * 26)
-    print()
+    print_break()
 
 
 def card_setup():
@@ -186,6 +171,8 @@ def card_setup():
             elif pack_selection == 2:
                 params_black = {"color": "black"}
                 params_white = {"color": "white"}
+                # params_black = {"packs": "CAH Base Set", "color": "black"}  # for testing
+                # params_white = {"packs": "CAH Base Set", "color": "white"}  # for testing
             else:
                 raise ValueError
             break
@@ -195,9 +182,7 @@ def card_setup():
     black_cards = response.json()["black"]
     response = requests.get("https://restagainsthumanity.com/api/v2/cards", params=params_white)
     white_cards = response.json()["white"]
-    print()
-    print('-' * 26)
-    print()
+    print_break()
 
 
 def set_points_to_win():
@@ -210,9 +195,7 @@ def set_points_to_win():
             break
         except:
             print("Invalid input. Try again.")
-    print()
-    print('-' * 26)
-    print()
+    print_break()
 
 
 def player_setup():
@@ -225,9 +208,7 @@ def player_setup():
             break
         except:
             print("Invalid input. Try again.")
-    print()
-    print('-' * 26)
-    print()
+    print_break()
     player_name_countdown = player_count
     player_index_range = list(range(0, player_count))
     while player_name_countdown > 0:
@@ -246,9 +227,7 @@ def player_setup():
         player_list.append(a)
         player_name_countdown -= 1
         a.draw_white_card()
-    print()
-    print('-' * 26)
-    print()
+    print_break()
 
 
 def pick_current_czar():
@@ -267,16 +246,12 @@ def pick_current_czar():
             except:
                 print("Invalid input. Try again.")
         current_czar = Czar(player_list[current_czar_index])
-        print()
-        print('-' * 26)
-        print()
+        print_break()
         print(f"Current Czar: {player_list[current_czar_index].player}")
     else:
         current_czar_index = next(islice(cycle(player_index_range), current_czar_index+1, None))
         current_czar = Czar(player_list[current_czar_index])
-        print()
-        print('-' * 26)
-        print()
+        print_break()
         print(f"Current Czar: {player_list[current_czar_index].player}")
     player_index = next(islice(cycle(player_index_range), current_czar_index + 1, None))
 
@@ -286,33 +261,23 @@ def run_round():
     while player_index != current_czar_index:
         input(f"{player_list[player_index].player}, it's your turn. Press Enter to see your hand.")
         os.system('cls')
-        print()
-        print('-' * 26)
-        print()
+        print_break()
         print(f"Current player: {player_list[player_index].player}")
-        print()
-        print('-' * 26)
-        print()
+        print_break()
         print(f"Current czar: {player_list[current_czar_index].player}")
         print(f"Current black card: {current_black_card_text}")
-        print()
-        print('-' * 26)
-        print()
+        print_break()
         player_list[player_index].submit_white_card()
         player_list[player_index].draw_white_card()
         if current_black_card["pick"] == 1:
             print(f"New card in your hand: {player_list[player_index].hand[-1]}")
         if current_black_card["pick"] == 2:
             print(f"New cards in your hand: {player_list[player_index].hand[-2]}, {player_list[player_index].hand[-1]}")
-        print()
-        print('-' * 26)
-        print()
+        print_break()
         input("Press Enter to end your turn.")
         player_index = next(islice(cycle(player_index_range), player_index+1, None))
         os.system('cls')
-        print()
-        print('-' * 26)
-        print()
+        print_break()
 
 
 def loop_round():
@@ -322,13 +287,9 @@ def loop_round():
             for person in player_list:
                 if person.points >= points_to_win:
                     game_winner = person.player
-            print()
-            print('-' * 26)
-            print()
+            print_break()
             print(f"{game_winner} won the game!")
-            print()
-            print('-' * 26)
-            print()
+            print_break()
             break
         pick_current_czar()
         current_czar.draw_black_card()
