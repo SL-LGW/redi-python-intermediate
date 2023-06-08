@@ -1,7 +1,7 @@
 from game_mechanics import *
 
 # run game
-os.system('cls')
+clear_screen()
 welcome()
 card_setup()
 player_setup()

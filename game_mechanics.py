@@ -2,6 +2,7 @@ import requests
 import random
 from itertools import cycle, islice
 import os
+import platform
 
 
 current_czar = None
@@ -142,6 +143,13 @@ class Czar(Player):
         white_card_submission = []
 
 
+def clear_screen():
+    if platform.system() == "Windows":
+        os.system('cls')
+    elif platform.system() == "Linux" or platform.system() == "Darwin":
+        os.system('clear')
+
+
 def print_break():
     print()
     print('-' * 26)
@@ -261,7 +269,7 @@ def run_round():
     global player_index, current_czar_index, player_list
     while player_index != current_czar_index:
         input(f"{player_list[player_index].player}, it's your turn. Press Enter to see your hand.")
-        os.system('cls')
+        clear_screen()
         print_break()
         print(f"Current player: {player_list[player_index].player}")
         print_break()
@@ -277,7 +285,7 @@ def run_round():
         print_break()
         input("Press Enter to end your turn.")
         player_index = next(islice(cycle(player_index_range), player_index+1, None))
-        os.system('cls')
+        clear_screen()
         print_break()
 
 
