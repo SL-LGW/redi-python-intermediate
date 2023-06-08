@@ -38,7 +38,6 @@ class Player:
             print(f"{count}: {card}")
             count += 1
         if current_black_card["pick"] == 1:
-            # print(current_black_card) # for testing
             text = "Please choose a card to submit (enter number): "
             while True:
                 try:
@@ -53,7 +52,6 @@ class Player:
             white_card_submission.append((self.player, self.hand[submit_index]))
             self.hand.remove(self.hand[submit_index])
         elif current_black_card["pick"] == 2:
-            # print(current_black_card) # for testing
             text = "Please choose the first card (enter number): "
             while True:
                 try:
@@ -180,8 +178,6 @@ def card_setup():
             elif pack_selection == 2:
                 params_black = {"color": "black"}
                 params_white = {"color": "white"}
-                # params_black = {"packs": "CAH Base Set", "color": "black"}  # for testing
-                # params_white = {"packs": "CAH Base Set", "color": "white"}  # for testing
             else:
                 raise ValueError
             break
